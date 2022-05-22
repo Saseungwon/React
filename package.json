@@ -1,0 +1,20 @@
+{
+  "name": "react",
+  "version": "1.0.0",
+  "description": "#### 1. keyword - Angular vs React vs Vue 비교  - View를 다루는 라이브러리 - 랜더링과 업데이트에만 관여되는 라이브러리, 그렇기 때문에 다른 http 클라이언트나 스타일에 대한 기능은 없다. - Component Based Development : 독립적인 코드 블럭 (HTTP + CSS + JavaScript) - Virtual DOM : DOM을 직접 다루지 않고, 이를 React에게 위임함  - JSX : 템플릿이 아니라 순수 js로 transpile되는 문법(Babel, TypeScript) - CSR & SSR",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Saseungwon/React.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Saseungwon/React/issues"
+  },
+  "homepage": "https://github.com/Saseungwon/React#readme"
+}
