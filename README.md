@@ -52,3 +52,69 @@
   - JS가 전부 다운로드 되지 않아도, 일단 화면은 보이지만 유저가 사용할 수 없음 
   - JS가 전부 다운로드 되어 리액트 애플리케이션이 정상 실행된 후, 유저가 사용 가능
 
+
+<br>
+
+## React Library
+
+#### 1. 핵심 모듈
+```js
+// 리액트 컴포넌트 => HTMLElement 연결하는 역할
+import ReactDOM from 'react-dom';
+
+// 2. 리액트 컴포넌트 만드는 역할 
+import React from 'react';
+```
+
+
+"만들어진 리액트 컴포넌트"를 실제 HTMLElement에 연결할 때 ReactDOM 라이브러리를 이용합니다.  
+
+- React CDN
+```html
+<script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
+<script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+```
+
+
+#### 2. 기존 프론트엔트 
+- HTML로 문서구조를 잡고
+- CSS로 스타일을 입히고
+- JS로 DOM을 조작한다.
+
+
+#### 3. 컴포넌트를 활용한 프론트엔드 
+- 컴포넌트를 정의하고
+- 실제 DOM에 컴포넌트를 그려준다. 
+
+
+## React Component 만드는 법 
+
+#### Hooks 나오기 이전
+- 컴포넌트 내부에 상태가 있다면 -> class 컴포넌트를 만들어서 사용 
+- 컴포넌트 내부에 상태가 없다면 -> 라이프사이클은 사용해야하면 class
+- 컴포넌트 내부에 상태가 없다면 -> 라이프사이클에 관계 없다면 function
+
+#### Hooks 나온 후
+- class
+- function 
+- 둘 모두 구분 없이 사용함
+
+
+#### Class 컴포넌트 만들기 
+```js
+import React from 'react';
+
+// 정의
+class ClassComponent extends React.Component {
+  render(){
+    return (<div>Hello</div>);
+  }
+}
+
+// 사용
+<ClassComponent />
+```
+
+
+#### React.createElement로 컴포넌트 만들기 
+
