@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Example</title>
+</head>
+<body>
+
+  <div id="root"></div>
+  <script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+  <script type="text/javascript">
+    console.log(React);
+    console.log(ReactDOM)
+
+
+    class Component extends React.Component {
+      // state는 객체 형태로만 제공됨
+      state = {
+        count: 0,
+      };
+      render(){
+        return(
+          <div>
+             <h1>{this.props.message} 이것은 class로 만든 컴포넌트 입니다.</h1>
+             <p>{this.state.count}</p> 
+          </div>
+        );
+      }
+
+      componentDidMount(){
+        setTimeout(() => {
+          // this.state.count = this.state.count + 1;   => 이런식으로 하면 state 안에 접근불가
+          this.setState({count: this.state.count + 1}); // setState 사용해야함
+        }, 1000);
+      }
+
+      static defaultProps = {
+        message: "기본값2"
+      };
+    }
+
+    ReactDOM.render(
+      <Component message="기본값 아님"/>, 
+      document.querySelector("#root")
+    );
+  </script>
+
+</body>
+</html>
