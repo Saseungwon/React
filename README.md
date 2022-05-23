@@ -117,4 +117,114 @@ class ClassComponent extends React.Component {
 
 
 #### React.createElement로 컴포넌트 만들기 
+https://github.com/Saseungwon/React/blob/master/React.createElement.html
+- React.createElement의 한계
+  ```html
 
+    ReactDOM.render(
+        React.createElement(
+          "div", 
+          null, 
+          React.createElement(
+            "div", 
+            null,
+            React.createElement("h1", null, "주제"), 
+            React.createElement(
+              "ul", 
+              null, 
+              react.createElement("li", null, "React"),
+              react.createElement("li", null, "Vue"),
+            )
+          )
+        ),
+        document.querySelector('#root')
+      );
+  ```
+
+#### JSX
+- 위의 React.createElement의 한계를 해결하기 위해 
+    ```html
+        ReactDOM.render(
+          <div a="a">
+            <div>
+            <h1>주제</h1>
+            <ul>
+              <li>Vue</li>
+              <li>React</li>
+            </ul>
+            </div>
+          </div>,
+          document.querySelector("#root")
+        );
+    ```
+
+- 우리가 작성한 어떤 코드를 순수하게 실행할 수 있는 자바스크립트로 변환하는 과정이 필요하다. => babel에 의해 진행됨
+- JSX를 쓰는 이유
+  - React.createElement 와 비교해서 가독성이 뛰어나다.
+  - babel과 같은 컴파일 과정에서 문법적 오류를 인지하기 쉬움
+
+- JSX 문법
+  - 최상위 요소가 하나여야 한다. 
+  - 최상위 요소 리턴하는 경우, ()로 감싸야 한다. 
+  - 자식들을 바로 랜더링하고 싶으면, <>자식들</>을 사용한다. => Fragment
+      ```html
+        ReactDOM.render(
+          <>  // fragment
+          <div a="a">
+            <div>
+            <h1>주제</h1>
+            <ul>
+              <li>Vue</li>
+              <li>React</li>
+            </ul>
+            </div>
+          </div>,
+          <div a="a">
+            <div>
+            <h1>주제</h1>
+            <ul>
+              <li>Vue</li>
+              <li>React</li>
+            </ul>
+            </div>
+          </div>,
+          </>   // fragment
+          document.querySelector("#root")
+        );
+    ```
+  - 자바스크립트 표현식을 사용하려면 {표현식}을 이용한다.
+      ```html
+      const title = "주제!!!";
+
+        ReactDOM.render(
+          <div a="a">
+            <div>
+            <h1>{title}</h1>    // {}로 표현
+            <ul>
+              <li>Vue</li>
+              <li>React</li>
+            </ul>
+            </div>
+          </div>,
+          document.querySelector("#root")
+        );
+    ``` 
+  - if문 사용 불가능 -> 삼항 연사자 혹은 && 사용
+  - style을 이용해 인라인 스타일링이 가능
+  - class 대신 className을 사용해 class를 적용할 수 있다.
+  - 자식요소가 있으면 꼭 닫아야 하고, 없으면 열면서 닫아야 한다. 
+      ```html
+      <p>자식요소</p>
+      <br /> 
+      ```
+
+#### Props 와 State
+
+Props : 컴포넌트 외부에서 컴포넌트에게 주는 데이터
+State : 컴포넌트 내부에서 변경할 수 있는 데이터
+둘다 변경이 발생하면, 랜더가 다시 일어날 수 있다. 
+
+#### Render 함수
+Props와 State를 바탕으로 컴포넌트를 그린다. 
+그리고 Props와 State가 변경되면 컴포넌트를 다시 그린다. 
+컴포넌트를 그리는 방법을 기술하는 함수가 랜더 함수이다.
