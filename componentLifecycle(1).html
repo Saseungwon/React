@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Example</title>
+</head>
+<body>
+
+  <div id="root"></div>
+  <script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+  <script type="text/javascript">
+    console.log(React);
+    console.log(ReactDOM)
+
+    class App extends React.Component {
+
+      state = {
+        age: 39,
+      };
+
+      // 밑에서 쓰기위해 정의해줌
+      interval = null;
+
+      constructor(props) {
+        super(props);
+        console.log("construct", props);
+      }
+
+      // state가 setState를 통해 바뀌었을 때 다시 실행됨
+      render(){
+        console.log('render');
+        return (
+          <div>
+            <h2>
+              Hello {this.props.name} - {this.state.age}
+            </h2>
+          </div>
+        )
+      };
+
+      componentWillMount() {
+        console.log('componentWillMount');
+      }
+
+      componentDidMount() {
+        console.log('componentDidMount');
+
+        // 밑에서 사용하기 위해 this로 멤버변수로 만들어줌
+        this.interval = setInterval(() => {
+          this.setState(state => ({...state, age:state.age + 1}));
+        }, 1000);
+      }
+
+      componentWillReceiveProps(nextProps) {
+        console.log('componentWillReceiveProps', nextProps);
+      }
+
+      shouldComponentUpdate(nextProps, nextState) {
+        //return true / false 해줘야 한다.
+        // true면 랜더 진행
+        // flase면 state나 props가 변경되었음에도 불구하고 랜더가 되지 않는다. 
+        console.log('shouldComponentUpdate', nextProps, nextState);
+        return true;
+      }
+
+      componentWillUpdate(nextProps, nextState){
+        console.log('componentWillUpdate', nextProps, nextState);
+      }
+
+      componentDidUpdate(prevProps, prevState){
+        console.log('componentDidUpdate', prevProps, prevState);
+      }
+
+      componentWillUnmount(){
+        // componentDidMount에서 setInterval 한 걸 여기서 해제해주지 않으면 setInterval은 끝나지 않고 돌고있음
+        // 그래서 이 단계에서 정리해준다 -> clearInterval
+        clearInterval(this.interval);
+      }
+
+    }
+
+    ReactDOM.render(<App name="Mark" />, document.querySelector("#root"));
+  </script>
+
+</body>
+</html>
