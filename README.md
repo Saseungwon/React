@@ -228,3 +228,60 @@ State : 컴포넌트 내부에서 변경할 수 있는 데이터
 Props와 State를 바탕으로 컴포넌트를 그린다. 
 그리고 Props와 State가 변경되면 컴포넌트를 다시 그린다. 
 컴포넌트를 그리는 방법을 기술하는 함수가 랜더 함수이다.
+
+
+#### Event Handling
+- HTML DOM 에 클릭하면 이벤트가 발생하고, 발생하고 그에 맞는 변경이 일어나도록 해야한다. 
+- JSX에 이벤트를 설정할 수 있다. 
+<br>
+
+- camelCase로만 사용가능 : onClick, onMouseEnter
+- 이벤트에 연결된 자바스크립트 코드는 함수이다. : 이벤트 = {함수} 와 같이 쓴다. 
+- 실제 DOM 요소들에만 사용 가능 : 리액트 컴포넌트에 사용하면 그냥 props로 전달한다.  
+
+
+#### Component Lifecycle
+- 리액트 컴포넌트는 탄생부터 죽음까지 여러 지점에서 개발자가 작업이 가능하도록 메서드를 오버라이딩 할 수 있게 해준다. 
+<br>
+
+- 리액트 라이프사이클의 성질
+  - Declarative : 탄생부터 죽음까지 순간순간을 선언적으로 표현해놓으면 리액트 컴포넌트가 해당 상황이 되면 함수들을 실행할 수 있게 
+    1. Component 생성 및 마운트
+      - constructor
+      - componentWillMount
+      - render
+      - componentDidMount
+
+    2. Component props, state 변경
+      - componentWillReceiveProps
+      - shouldComponentUpdate
+      - componentWillUpdate
+      - render
+      - componentDidUpdate
+
+    3. Component 언마운트
+      - componentWillUnmount
+      - 언마운트 된 후에는 할 수 있는 게 없기 때문에 언마운트 되기 직전이라는 훅이 있다.(ex.정리할 메모리를 정리하는 처리)
+
+- componentWillReceiceProps
+  - props를 새로 지정했을 때 바로 호출된다.
+  - 여기는 state의 변경에 반응하지 않는다. 
+    - 여기서 props의 값에 따라 state를 변경해야 한다면
+      - setState를 이용해 state를 변경한다. 그러면 다음 이벤트로 각각 가는것이 아니라 한 번에 변경된다. 
+
+- shouldComponentUpdate
+  - props만 변경되어도
+  - state만 변경되어도
+  - 둘다 변경되어도 
+  - newProps와 new State를 인자로 해서 호출
+  - return type은 boolean
+    - true면 render
+    - false면 render 호출 안 한다. 
+    - default는 true
+
+- componentWillUpdate
+  - 컴포넌트가 재 랜더링 되기 직전에 불린다.
+  - 여기선 setState 같은 것을 쓰면 안 된다. 
+
+- componentDidUpdate 
+  - 컴포넌트가 재 랜더링을 마치면 불린다.
